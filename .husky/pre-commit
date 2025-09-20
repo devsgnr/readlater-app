@@ -1,0 +1,2 @@
+echo "✅ Enforcing Code Styling"
+bunx lint-staged
