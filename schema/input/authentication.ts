@@ -23,11 +23,6 @@ const SignUpSchema = object().shape({
   name: string().required(name_err).min(2),
   email: string().matches(email_regex, invalid_email_err).required(email_err),
   password: string().required(pw_err).min(8),
-  profession: string().required(),
-  price: number().required(),
-  role: string().required(),
-  phoneNumber: string().required(phone_no_err).min(11, phone_no_len_err).max(11, phone_no_len_err),
-  membershipFeeId: string().required(),
 });
 
 const AdminSignUpSchema = object().shape({

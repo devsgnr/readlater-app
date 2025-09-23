@@ -1,7 +1,7 @@
 import React from "react";
 import TimeoutWrapper from "./TimeoutWrapper";
 import { TextShimmer } from "../ui/text-shimmer";
-import NSSLogoIcon from "../icons/nss-logo-icon";
+import NSSLogoIcon from "../icons/logo-icon";
 
 const Loading = React.memo(() => {
   return (

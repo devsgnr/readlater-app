@@ -14,19 +14,16 @@ type CombinedNavItems = {
 type NavType = Array<NavItem>;
 type CombinedNavType = Array<CombinedNavItems>;
 
-const NAV_ITEM: NavType = [
-  { id: nanoid(), title: "Home", link: "/" },
-  { id: nanoid(), title: "Contact", link: "/contact" },
-];
+const NAV_ITEM: NavType = [{ id: nanoid(), title: "Home", link: "/" }];
 
 const UPPER_NAV_ITEM: NavType = [
-  { id: nanoid(), title: "Log In", link: "/membership/sign-in" },
-  { id: nanoid(), title: "Become a Member", link: "/membership/sign-up" },
+  { id: nanoid(), title: "Log In", link: "/sign-in" },
+  { id: nanoid(), title: "Become a Member", link: "/sign-up" },
 ];
 
 const COMBINED: CombinedNavType = [
   { name: "Pages", links: NAV_ITEM },
-  { name: "Membership", links: UPPER_NAV_ITEM },
+  // { name: "Membership", links: UPPER_NAV_ITEM },
 ];
 
 export type { NavItem, CombinedNavItems, NavType, CombinedNavType };

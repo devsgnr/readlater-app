@@ -27,7 +27,6 @@ type AuthSessionType = {
 
 type AuthContextType = {
   session: AuthSessionType | null;
-  tiers: TiersRes | undefined;
   isLoading: boolean;
 };
 

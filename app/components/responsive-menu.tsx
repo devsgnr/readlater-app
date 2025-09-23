@@ -73,7 +73,7 @@ const ResponsiveMenu = () => {
         {data !== null && (
           <div className="grid items-center">
             <DropdownMenuItem asChild className="rounded-none cursor-pointer">
-              <Link className="w-full grid gap-[2px]" href="/membership">
+              <Link className="w-full grid gap-[2px]" href="/">
                 <p className="text-[13px] font-medium">{data?.user?.name}</p>
                 <p className="text-xs text-muted-foreground">Go to Dashboard</p>
               </Link>

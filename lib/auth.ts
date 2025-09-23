@@ -5,6 +5,17 @@ import { nextCookies } from "better-auth/next-js";
 import { prisma } from "./prisma-client";
 
 export const auth = betterAuth({
+  socialProviders: {
+    google: {
+      clientId: process.env.BETTER_AUTH_GOOGLE_CLIENT_ID!,
+      clientSecret: process.env.BETTER_AUTH_GOOGLE_CLIENT_SECRET!,
+      prompt: "select_account",
+    },
+    twitter: {
+      clientId: process.env.BETTER_AUTH_TWITTER_CLIENT_ID!,
+      clientSecret: process.env.BETTER_AUTH_TWITTER_CLIENT_SECRET!,
+    },
+  },
   emailAndPassword: {
     enabled: true,
     sendResetPassword: async ({ user, url }) => {
@@ -26,10 +37,10 @@ export const auth = betterAuth({
   plugins: [nextCookies()],
   trustedOrigins: [
     // Local Development Server
-    "http://localhost:3001",
-    "http://127.0.0.1:3001",
+    "http://localhost:3002",
+    "http://127.0.0.1:3002",
     // Cloudflare Production Domain
-    "https://nss.org.ng",
-    "https://www.nss.org.ng",
+    "https://readlater.fyi",
+    "https://www.readlater.fyi",
   ],
 });

@@ -9,14 +9,33 @@ import {
 } from "@/schema/input/authentication";
 import { UpdateUserSchemaType } from "@/schema/input/profile";
 
+const useContinueWithGoogle = () => {
+  return useMutation({
+    mutationFn: () => {
+      return AuthClient.signIn.social({
+        provider: "google",
+      });
+    },
+  });
+};
+
+const useContinueWithTwitter = () => {
+  return useMutation({
+    mutationFn: () => {
+      return AuthClient.signIn.social({
+        provider: "twitter",
+      });
+    },
+  });
+};
+
 const useEmailSignUp = () => {
-  type Omitted = "profession" | "role" | "price" | "membershipFeeId" | "phoneNumber";
-  type SignUp = Omit<SignUpSchemaType, Omitted>;
+  type SignUp = SignUpSchemaType;
 
   return useMutation({
     mutationFn: (data: SignUp) => {
       return AuthClient.signUp.email(
-        { ...data, callbackURL: "/membership/" },
+        { ...data, callbackURL: "/" },
         {
           onSuccess: (res) => {
             return res.data;
@@ -92,6 +111,8 @@ const useSignOut = () => {
 };
 
 export {
+  useContinueWithGoogle,
+  useContinueWithTwitter,
   useEmailSignUp,
   useEmailSignIn,
   useRequestResetPassword,

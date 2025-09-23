@@ -11,9 +11,9 @@ const SendVerifyEmail = async (data: EmailType) => {
   const body = await render(createElement(VerifyEmail, { name: data.name, url: data.url }));
 
   return await email.emails.send({
-    from: "noreply@mail.nss.org.ng",
+    // from: "noreply@mail.readlater.fyi",
     to: data.email,
-    subject: "Nigerian Sleep Society - Email Verification",
+    subject: "Readlater - Email Verification",
     body,
   });
 };
@@ -22,9 +22,9 @@ const SendResetPasswordEmail = async (data: EmailType) => {
   const body = await render(createElement(ResetPassword, { name: data.name, url: data.url }));
 
   return await email.emails.send({
-    from: "noreply@mail.nss.org.ng",
+    // from: "noreply@mail.readlater.fyi",
     to: data.email,
-    subject: "Nigerian Sleep Society - Reset Password",
+    subject: "Readlater - Reset Password",
     body,
   });
 };

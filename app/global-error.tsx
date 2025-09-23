@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import NSSLogoIcon from "@/components/icons/nss-logo-icon";
+import NSSLogoIcon from "@/components/icons/logo-icon";
 import { useSignOut } from "./api/hooks/auth";
 
 export default function GlobalError({ reset }: { reset: () => void }) {
@@ -12,8 +12,7 @@ export default function GlobalError({ reset }: { reset: () => void }) {
       <NSSLogoIcon width={48} height={48} />
       <h2>Something went wrong!</h2>
       <p className="text-sm">
-        Ooops! we are working to solve this issue, if this issue persists,
-        contact us
+        Ooops! we are working to solve this issue, if this issue persists, contact us
       </p>
 
       <div className="flex items-center gap-3">

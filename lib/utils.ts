@@ -1,7 +1,5 @@
-import { type ClassValue, clsx } from "clsx";
+import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
-import { env } from "./env";
-import { FirebaseError } from "firebase/app";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -17,11 +15,7 @@ export const slugify = (text: string): string => {
 };
 
 export const isValidImageURL = (str: string): boolean => {
-  return (
-    str.startsWith("/") ||
-    str.startsWith("http://") ||
-    str.startsWith("https://")
-  );
+  return str.startsWith("/") || str.startsWith("http://") || str.startsWith("https://");
 };
 
 export const formatDate = (d: Date): string => {
@@ -46,7 +40,7 @@ export const scrollToTop = (selector: string) => {
 
 export const CopyToClipboard = (
   text: string,
-  options: { onSucess?: () => void; onError?: () => void }
+  options: { onSucess?: () => void; onError?: () => void },
 ) => {
   navigator.clipboard
     .writeText(text)
@@ -59,28 +53,11 @@ export const CopyToClipboard = (
 };
 
 export const sanitizeFBe = (value: string): string => {
-  const firstStage: string[] = value
-    .split("/")[1]
-    .split("-")
-    .join(" ")
-    .split(")")[0]
-    .split(" ");
+  const firstStage: string[] = value.split("/")[1].split("-").join(" ").split(")")[0].split(" ");
 
   for (let i = 0; i < firstStage.length; i++) {
-    firstStage[i] =
-      firstStage[i].charAt(0).toUpperCase() + firstStage[i].slice(1);
+    firstStage[i] = firstStage[i].charAt(0).toUpperCase() + firstStage[i].slice(1);
   }
 
   return firstStage.join(" ");
-};
-
-export const handleError = (e: unknown) => {
-  const error: FirebaseError = e as FirebaseError;
-  const modified: FirebaseError = {
-    ...error,
-    ...{
-      message: sanitizeFBe(error.message),
-    },
-  };
-  return { error: modified };
 };

@@ -25,7 +25,6 @@ model User {
   sessions      Session[]
   accounts      Account[]
 
-  member        Member?
   payments      Payment[]
 
   @@unique([email])
@@ -76,46 +75,6 @@ model Verification {
 
   @@map("verification")
 }
-
-model Member {
-  id                String      @id @default(cuid())
-  userId            String      @unique
-  user              User        @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  certification     String?
-  profession        String? 
-  role              String?
-  status            String?
-  access_role       String?
-  phoneNumber       String?
-  revoked           Boolean     @default(false)
-
-  lastPaymentDate   DateTime?
-  totalDue          Int?
-  membershipFeeId   String
-  membershipFee     MembershipFee @relation(fields: [membershipFeeId], references: [id])
-
-  createdAt         DateTime      @default(now())
-  updatedAt         DateTime      @updatedAt
-
-  @@index([lastPaymentDate])
-  @@map("member")
-}
-
-model MembershipFee {
-  id            String @id @default(cuid())
-  tier          String
-  amount        Int
-  description   String
-
-  members       Member[]
-
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
-
-  @@map("membershipFee")
-}
-
 model Payment {
   id           String   @id @default(cuid())
   userId       String

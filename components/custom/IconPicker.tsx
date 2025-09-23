@@ -9,6 +9,7 @@ import BlueCheckIcon from "../icons/blue-check";
 import PDFIcon from "../icons/pdf";
 import ChromeIcon from "../icons/chrome";
 import GithubIcon from "../icons/github";
+import GoogleIcon from "../icons/google";
 
 interface Props extends SVGProps<SVGSVGElement> {
   type: string;
@@ -17,6 +18,7 @@ interface Props extends SVGProps<SVGSVGElement> {
 
 const IconPicker = React.memo(({ type, size = 18, ...rest }: Props) => {
   const Icons: Record<string, JSX.Element> = {
+    google: <GoogleIcon width={size} height={size} {...rest} />,
     twitter: <XIcon width={size} height={size} {...rest} />,
     x: <XIcon width={size} height={size} {...rest} />,
     reddit: <RedditIcon width={size} height={size} {...rest} />,

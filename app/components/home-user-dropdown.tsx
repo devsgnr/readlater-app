@@ -6,7 +6,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import ProfileImage from "../membership/(app)/components/ProfileImage";
+import ProfileImage from "../(app)/components/ProfileImage";
 import { useSignOut } from "@/app/api/hooks/auth";
 import { toast } from "sonner";
 import Link from "next/link";
@@ -37,12 +37,7 @@ const HomeUserDropdown = () => {
     <DropdownMenu>
       <DropdownMenuTrigger className="h-fit focus-visible:outline-none focus-visible:ring-0 group bg-white drop-shadow-sm border border-input pl-0.5 pr-1 py-0.5 rounded-none">
         <div className="flex items-center gap-2">
-          <ProfileImage
-            src={data?.user.image}
-            alt={data?.user.name}
-            size={30}
-            radius={1}
-          />
+          <ProfileImage src={data?.user.image} alt={data?.user.name} size={30} radius={1} />
           <p className="text-[13px] font-medium">{data?.user.name}</p>
           <ChevronDown
             className="text-muted-foreground group-data-[state=open]:rotate-180 group-data-[state=closed]:rotate-0 transition-all duration-150"
@@ -65,7 +60,7 @@ const HomeUserDropdown = () => {
           className="items-center justify-between gap-2 cursor-pointer rounded-none"
           asChild
         >
-          <Link href="/membership">
+          <Link href="/">
             <span>Dashboard</span>
             <LayoutDashboard size={16} strokeWidth={2.5} />
           </Link>

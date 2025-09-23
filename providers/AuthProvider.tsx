@@ -1,6 +1,5 @@
 "use client";
 
-import { useGetTiers } from "@/app/api/hooks/tiers";
 import LoadingPage from "@/app/loading";
 import AuthContext from "@/context/AuthContext";
 import { AuthClient } from "@/lib/auth-client";
@@ -14,9 +13,8 @@ const AuthProvider = ({ children }: Props) => {
   const router = useRouter();
   const pathname = usePathname();
   const { data: session, isPending } = AuthClient.useSession();
-  const { data } = useGetTiers();
 
-  const isOnHomePage = pathname === "/membership";
+  const isOnHomePage = pathname === "/";
   const isOnLogin = pathname.includes("sign-in");
   const isOnRegister = pathname.includes("sign-up");
   const isOnAuthPage = isOnLogin || isOnRegister;
@@ -24,15 +22,15 @@ const AuthProvider = ({ children }: Props) => {
   if (isPending) return <LoadingPage />;
 
   if (!isPending && isOnHomePage && session === null) {
-    router.push("/membership/sign-in");
+    router.push("/sign-in");
   }
 
   if (!isPending && isOnAuthPage && session !== null) {
-    router.push("/membership");
+    router.push("/");
   }
 
   return (
-    <AuthContext.Provider value={{ session, isLoading: isPending, tiers: data }}>
+    <AuthContext.Provider value={{ session, isLoading: isPending }}>
       {children}
     </AuthContext.Provider>
   );

@@ -1,13 +1,8 @@
 import type { Config } from "tailwindcss";
 
 const config = {
-  darkMode: ["class"],
-  content: [
-    "./pages/**/*.{ts,tsx}",
-    "./components/**/*.{ts,tsx}",
-    "./app/**/*.{ts,tsx}",
-    "./src/**/*.{ts,tsx}",
-  ],
+  darkMode: ["class", "variant"],
+  content: ["./components/**/*.{ts,tsx}", "./app/**/*.{ts,tsx}"],
   theme: {
     container: {
       center: true,
@@ -20,8 +15,9 @@ const config = {
       typography: () => ({
         DEFAULT: {
           css: {
-            ':where(*)': {
-              fontFeatureSettings: '"ss01" 1, "cv08" 1, "cv05" 1, "cv01" 1, "cv12" 1, "cv13" 1, "cv06" 1, "calt" 1, "dlig" 1',
+            ":where(*)": {
+              fontFeatureSettings:
+                '"ss01" 1, "cv08" 1, "cv05" 1, "cv01" 1, "cv12" 1, "cv13" 1, "cv06" 1, "calt" 1, "dlig" 1',
             },
           },
         },
@@ -104,7 +100,11 @@ const config = {
       },
     },
   },
-  plugins: [require("tailwindcss-animate"), require("@tailwindcss/typography")],
+  plugins: [
+    require("@tailwindcss/postcss"),
+    require("tailwindcss-animate"),
+    require("@tailwindcss/typography"),
+  ],
 } satisfies Config;
 
 export default config;

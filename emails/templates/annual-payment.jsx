@@ -15,7 +15,7 @@ import {
 } from "jsx-email";
 
 export const previewProps = {
-  url: "https://nss.org.ng/membership/payments",
+  url: "https://nss.org.ng//payments",
   name: "Dr. Emmanuel Watila",
   amount: 5000000, // in Kobo = ₦50,000
   tier: "Member",
