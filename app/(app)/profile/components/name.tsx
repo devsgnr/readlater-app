@@ -45,22 +45,19 @@ const ChangeNameForm = () => {
         <FormikProvider value={formik}>
           <form
             onSubmit={formik.handleSubmit}
-            className="flex flex-col w-full border border-zinc-300 drop-shadow-sm rounded-md"
+            className="flex flex-col w-full ring-1 ring-muted rounded-md"
           >
-            <div className="bg-white p-5 flex flex-col gap-4 rounded-t-md">
+            <div className="bg-background p-5 flex flex-col gap-4 rounded-t-md border-b border-muted">
               <div className="flex flex-col gap-2">
                 <h1 className="text-xl font-semibold tracking-tight">Name</h1>
-                <p className="text-sm text-muted-foreground text-wrap">
-                  Update your full name as it should appear on your professional profile (e.g., Dr.
-                  Amina Yusuf Bello)
-                </p>
+                <p className="text-sm text-muted-foreground text-wrap">Update your full name</p>
               </div>
 
               <div className="max-w-80">
                 <DayterInput
                   LeftIcon={User}
                   type="text"
-                  placeholder="Certification"
+                  placeholder="Full Name"
                   name="name"
                   autoComplete="off"
                   value={formik.values.name}
@@ -68,7 +65,7 @@ const ChangeNameForm = () => {
                   error={formik.errors.name}
                   required
                   disabled={isPending}
-                  className="h-10 bg-white drop-shadow-sm"
+                  className="h-10"
                 />
               </div>
             </div>

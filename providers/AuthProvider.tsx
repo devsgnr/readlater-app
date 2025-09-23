@@ -14,14 +14,14 @@ const AuthProvider = ({ children }: Props) => {
   const pathname = usePathname();
   const { data: session, isPending } = AuthClient.useSession();
 
-  const isOnHomePage = pathname === "/";
-  const isOnLogin = pathname.includes("sign-in");
-  const isOnRegister = pathname.includes("sign-up");
-  const isOnAuthPage = isOnLogin || isOnRegister;
+  const isOnSignin = pathname.includes("sign-in");
+  const isOnSignup = pathname.includes("sign-up");
+  const isOnAuthPage = isOnSignin || isOnSignup;
+  const isOnRoot = !isOnAuthPage;
 
   if (isPending) return <LoadingPage />;
 
-  if (!isPending && isOnHomePage && session === null) {
+  if (!isPending && isOnRoot && session === null) {
     router.push("/sign-in");
   }
 

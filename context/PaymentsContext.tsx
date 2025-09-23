@@ -8,7 +8,6 @@ type PageData = {
 };
 
 type PaymentsContextType = {
-  payments: PaymentRes;
   isLoadingPayments: boolean;
   pageData: PageData;
   setPageData: React.Dispatch<SetStateAction<PageData>>;

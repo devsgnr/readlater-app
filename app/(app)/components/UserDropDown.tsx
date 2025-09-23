@@ -12,6 +12,9 @@ import { useAuthContext } from "@/lib/hooks";
 import { toast } from "sonner";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { SidebarMenuButton, SidebarMenuItem } from "@/components/ui/sidebar";
+import Theme from "./Theme";
+import { UserDropdownItem } from "./constant";
 
 const UserDropdown = () => {
   const Router = useRouter();
@@ -37,19 +40,33 @@ const UserDropdown = () => {
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger className="h-fit focus-visible:outline-none focus-visible:ring-0 group bg-white drop-shadow-sm border border-input pl-0.5 pr-1 py-0.5 rounded-lg">
-        <div className="flex items-center gap-2">
-          <ProfileImage src={session?.user.image} alt={session?.user.name} size={30} />
-          <p className="text-[13px] font-medium">{session?.user.name}</p>
-          <ChevronDown
-            className="text-muted-foreground group-data-[state=open]:rotate-180 group-data-[state=closed]:rotate-0 transition-all duration-150"
-            size={14}
-          />
-        </div>
-      </DropdownMenuTrigger>
+      <SidebarMenuItem>
+        <SidebarMenuButton
+          className="focus-visible:outline-none focus-visible:ring-0 group-data-[collapsible=icon]:!p-0"
+          tooltip="Setting"
+          asChild
+        >
+          <DropdownMenuTrigger className="w-full h-fit focus-visible:outline-none focus-visible:ring-0 group group-data-[collapsible=icon]:!p-0">
+            <div className="w-full flex items-center gap-2">
+              <ProfileImage src={session?.user.image} alt={session?.user.name} size={30} />
 
-      <DropdownMenuContent className="z-9999" align="end">
-        <div className="grid min-w-[250px] items-center px-2 py-2">
+              <div className="flex flex-col items-start">
+                <p className="text-[13px] font-medium">{session?.user.name}</p>
+                <p className="text-xs">{session?.user.email}</p>
+              </div>
+
+              <ChevronDown
+                className="ml-auto group-aria-[expanded=true]:rotate-180 group-data-[expanded=false]:rotate-0 transition-all duration-150"
+                strokeWidth={2}
+                size={16}
+              />
+            </div>
+          </DropdownMenuTrigger>
+        </SidebarMenuButton>
+      </SidebarMenuItem>
+
+      <DropdownMenuContent className="z-9999" align="start">
+        <div className="grid min-w-[220px] items-center px-2 py-2">
           <div className="grid gap-px text-sm">
             <p>{session?.user.name}</p>
             <p className="text-xs text-muted-foreground">{session?.user.email}</p>
@@ -58,17 +75,27 @@ const UserDropdown = () => {
 
         <DropdownMenuSeparator />
 
-        <DropdownMenuItem className="items-center justify-between gap-2 cursor-pointer" asChild>
-          <Link href="/">
-            <span>Home Page</span>
-            <Home size={16} strokeWidth={2.5} />
-          </Link>
-        </DropdownMenuItem>
+        {UserDropdownItem.map((item) => (
+          <DropdownMenuItem
+            key={item.id}
+            className="items-center justify-between gap-2 cursor-pointer text-[13px]"
+            asChild
+          >
+            <Link href={item.href}>
+              <span>{item.title}</span>
+              <item.icon size={16} strokeWidth={2.5} />
+            </Link>
+          </DropdownMenuItem>
+        ))}
+
+        <DropdownMenuSeparator />
+
+        <Theme />
 
         <DropdownMenuSeparator />
 
         <DropdownMenuItem
-          className="items-center justify-between !text-destructive cursor-pointer"
+          className="items-center justify-between !text-destructive cursor-pointer text-[13px]"
           onClick={() => SignOut()}
         >
           <span>Sign out</span>

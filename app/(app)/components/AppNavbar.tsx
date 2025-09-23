@@ -1,51 +1,57 @@
 "use client";
 
-import { AnimatedBackground } from "@/components/ui/animated-background";
-import UserDropdown from "./UserDropDown";
 import { nanoid } from "nanoid";
-import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { cn } from "@/lib/utils";
-import NSSLogoIcon from "@/components/icons/logo-icon";
+import {
+  Sidebar,
+  SidebarContent,
+  SidebarFooter,
+  SidebarGroup,
+  SidebarGroupContent,
+  SidebarGroupLabel,
+  SidebarMenu,
+  SidebarMenuButton,
+  SidebarMenuItem,
+} from "@/components/ui/sidebar";
+import Link from "next/link";
+import { Home, User } from "lucide-react";
+import UserDropdown from "./UserDropDown";
+import { NavItem } from "./constant";
 
 const AppNavbar = () => {
   const pathname = usePathname();
 
-  const NAV_ITEM = [
-    { id: nanoid(), title: "Overview", href: "/" },
-    { id: nanoid(), title: "Profile", href: "//profile" },
-    { id: nanoid(), title: "Payments", href: "//payments" },
-    { id: nanoid(), title: "Elections", href: "//elections" },
-    // { id: nanoid(), title: "Events", href: "//events" },
-  ];
-
   return (
-    <nav className="bg-white w-full sticky top-0 left-0 z-999 flex flex-col">
-      <div className="flex flex-col">
-        <div className="flex items-center justify-between py-2 px-4 border-b-[0.5px] border-muted">
-          <div className="flex items-center gap-2">
-            <p className="text-sm font-medium">Nigerian Sleep Society</p>
-          </div>
+    <Sidebar collapsible="icon">
+      <SidebarContent>
+        <SidebarGroup>
+          <SidebarGroupLabel>Application</SidebarGroupLabel>
+          <SidebarGroupContent>
+            <SidebarMenu>
+              {NavItem.map((item) => (
+                <SidebarMenuItem key={item.title}>
+                  <SidebarMenuButton
+                    className="group"
+                    isActive={pathname === item.href}
+                    tooltip={item.title}
+                    asChild
+                  >
+                    <Link href={item.href}>
+                      <item.icon className="group-data-[active=true]:stroke-3 group-data-[active=false]:stroke-accent-foreground" />
+                      <span>{item.title}</span>
+                    </Link>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+              ))}
+            </SidebarMenu>
+          </SidebarGroupContent>
+        </SidebarGroup>
+      </SidebarContent>
 
-          <UserDropdown />
-        </div>
-
-        <div className="flex items-end gap-1 py-2 px-4">
-          {NAV_ITEM.map((link) => (
-            <Link
-              data-id={link.id}
-              className={cn("text-sm py-1 px-3 rounded-md flex items-center justify-center", {
-                "font-medium bg-secondary": pathname === link.href,
-              })}
-              key={link.id}
-              href={link.href}
-            >
-              {link.title}
-            </Link>
-          ))}
-        </div>
-      </div>
-    </nav>
+      <SidebarFooter>
+        <UserDropdown />
+      </SidebarFooter>
+    </Sidebar>
   );
 };
 

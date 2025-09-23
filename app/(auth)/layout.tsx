@@ -14,7 +14,7 @@ const AuthLayout = ({ children }: { children: React.ReactNode }) => {
     <ThemeProvider
       storageKey="readlater-theme"
       attribute="class"
-      defaultTheme="light"
+      defaultTheme="system"
       disableTransitionOnChange
     >
       <QueryClientProvider client={queryClient}>

@@ -12,7 +12,6 @@ import { QueryClientProvider } from "@tanstack/react-query";
 import { ApolloProvider } from "@apollo/client";
 import AuthProvider from "@/providers/AuthProvider";
 import PaymentsProvider from "@/providers/PaymentsProvider";
-import MemberDetailsProvider from "@/providers/MemberDetailsProvider";
 
 // Providers -- Dynamic Import
 const PaymentProcessorProvider = dynamic(() => import("@/providers/PaymentProcessorProvider"), {
@@ -22,29 +21,32 @@ const PaymentProcessorProvider = dynamic(() => import("@/providers/PaymentProces
 // Components
 import AppNavbar from "./components/AppNavbar";
 import ReadlaterToaster from "@/components/custom/ReadlaterToaster";
+import { SidebarProvider } from "@/components/ui/sidebar";
+import TopBar from "./components/TopBar";
 
 const AppLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <ThemeProvider
-      storageKey="nss-theme"
+      storageKey="readlater-theme"
       attribute="class"
-      defaultTheme="light"
+      defaultTheme="system"
       disableTransitionOnChange
     >
       <QueryClientProvider client={AppTanstackQueryClient}>
         <AuthProvider>
           <PaymentProcessorProvider>
             <ApolloProvider client={AppApolloClient}>
-              <MemberDetailsProvider>
-                <PaymentsProvider>
-                  {/** Sidebar Layout Level */}
+              <PaymentsProvider>
+                {/** Sidebar Layout Level */}
+                <SidebarProvider>
                   <AppNavbar />
-                  <main className="w-full flex items-start gap-0 whitespace-nowrap box-border overflow-x-hidden p-2.5">
+                  <main className="w-full whitespace-nowrap box-border overflow-x-hidden">
+                    <TopBar />
                     {/** Main Body */}
-                    <div className="w-full box-border pr-2 py-2 flex-1">{children}</div>
+                    <div className="w-full box-border">{children}</div>
                   </main>
-                </PaymentsProvider>
-              </MemberDetailsProvider>
+                </SidebarProvider>
+              </PaymentsProvider>
 
               {/** Notification Toast Provider - via Sonner & shadcn */}
               <ReadlaterToaster />
