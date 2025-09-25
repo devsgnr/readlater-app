@@ -10,7 +10,7 @@ const Home = () => {
       <div className="w-full flex sm:items-end items-start justify-between gap-4 sm:flex-row flex-col mb-8">
         <div className="flex flex-col gap-0.5">
           <p className="text-sm text-zinc-500 font-medium">Welcome, {session?.user.name}</p>
-          <h1 className="text-2xl font-bold tracking-tight">Your summary</h1>
+          <h1 className="text-2xl font-bold tracking-tight">Your Inbox</h1>
         </div>
       </div>
     </div>

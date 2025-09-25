@@ -1,8 +1,9 @@
-import { Home, Settings, User } from "lucide-react";
+import { Inbox, Settings, Star, User } from "lucide-react";
 import { nanoid } from "nanoid";
 
 const NavItem = [
-  { id: nanoid(), title: "Home", href: "/", icon: Home },
+  { id: nanoid(), title: "Inbox", href: "/", icon: Inbox },
+  { id: nanoid(), title: "Favorites", href: "#", icon: Star },
   { id: nanoid(), title: "Profile", href: "/profile", icon: User },
 ];
 

@@ -21,7 +21,7 @@ const Theme = () => {
           role="button"
           onClick={() => setTheme("light")}
         >
-          <Sun size={14} />
+          <Sun size={13} />
         </div>
 
         <div
@@ -31,7 +31,7 @@ const Theme = () => {
           role="button"
           onClick={() => setTheme("system")}
         >
-          <Monitor size={14} />
+          <Monitor size={13} />
         </div>
 
         <div
@@ -41,7 +41,7 @@ const Theme = () => {
           role="button"
           onClick={() => setTheme("dark")}
         >
-          <Moon size={14} />
+          <Moon size={13} />
         </div>
       </div>
     </div>

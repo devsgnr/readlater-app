@@ -65,8 +65,14 @@ const UserDropdown = () => {
         </SidebarMenuButton>
       </SidebarMenuItem>
 
-      <DropdownMenuContent className="z-9999" align="start">
-        <div className="grid min-w-[220px] items-center px-2 py-2">
+      <DropdownMenuContent className="z-9999" align="end" side="right">
+        <div className="grid grid-cols-[32px_auto] min-w-[220px] items-center gap-2 py-0.5 px-1">
+          <ProfileImage
+            className="w-9 h-9"
+            src={session?.user.image}
+            alt={session?.user.name}
+            size={30}
+          />
           <div className="grid gap-px text-sm">
             <p>{session?.user.name}</p>
             <p className="text-xs text-muted-foreground">{session?.user.email}</p>
@@ -83,7 +89,7 @@ const UserDropdown = () => {
           >
             <Link href={item.href}>
               <span>{item.title}</span>
-              <item.icon size={16} strokeWidth={2.5} />
+              <item.icon size={16} />
             </Link>
           </DropdownMenuItem>
         ))}
@@ -99,7 +105,7 @@ const UserDropdown = () => {
           onClick={() => SignOut()}
         >
           <span>Sign out</span>
-          <LogOut size={16} strokeWidth={2.5} />
+          <LogOut size={16} />
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
