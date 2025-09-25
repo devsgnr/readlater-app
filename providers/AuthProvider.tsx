@@ -1,5 +1,6 @@
 "use client";
 
+import { useGetUserAccount } from "@/app/api/hooks/auth";
 import LoadingPage from "@/app/loading";
 import AuthContext from "@/context/AuthContext";
 import { AuthClient } from "@/lib/auth-client";
@@ -13,6 +14,7 @@ const AuthProvider = ({ children }: Props) => {
   const router = useRouter();
   const pathname = usePathname();
   const { data: session, isPending } = AuthClient.useSession();
+  const { data } = useGetUserAccount();
 
   const isOnSignin = pathname.includes("sign-in");
   const isOnSignup = pathname.includes("sign-up");
@@ -30,7 +32,7 @@ const AuthProvider = ({ children }: Props) => {
   }
 
   return (
-    <AuthContext.Provider value={{ session, isLoading: isPending }}>
+    <AuthContext.Provider value={{ session, accounts: data?.data, isLoading: isPending }}>
       {children}
     </AuthContext.Provider>
   );

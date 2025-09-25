@@ -1,5 +1,5 @@
 import { AuthClient } from "@/lib/auth-client";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 
 import {
   ForgotPasswordSchemaType,
@@ -9,21 +9,11 @@ import {
 } from "@/schema/input/authentication";
 import { UpdateUserSchemaType } from "@/schema/input/profile";
 
-const useContinueWithGoogle = () => {
+const useThirdPartySignIn = (type: string) => {
   return useMutation({
     mutationFn: () => {
       return AuthClient.signIn.social({
-        provider: "google",
-      });
-    },
-  });
-};
-
-const useContinueWithTwitter = () => {
-  return useMutation({
-    mutationFn: () => {
-      return AuthClient.signIn.social({
-        provider: "twitter",
+        provider: type,
       });
     },
   });
@@ -102,6 +92,15 @@ const useUpdateUser = () => {
   });
 };
 
+const useGetUserAccount = () => {
+  return useQuery({
+    queryKey: ["getUsersAccounts"],
+    queryFn: () => {
+      return AuthClient.listAccounts();
+    },
+  });
+};
+
 const useSignOut = () => {
   return useMutation({
     mutationFn: () => {
@@ -110,13 +109,16 @@ const useSignOut = () => {
   });
 };
 
+type useThirdPartySignInType = ReturnType<typeof useThirdPartySignIn>;
+
+export type { useThirdPartySignInType };
 export {
-  useContinueWithGoogle,
-  useContinueWithTwitter,
+  useThirdPartySignIn,
   useEmailSignUp,
   useEmailSignIn,
   useRequestResetPassword,
   useResetPassword,
   useUpdateUser,
+  useGetUserAccount,
   useSignOut,
 };

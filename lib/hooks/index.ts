@@ -5,6 +5,10 @@ import PaymentProcessorContext, {
 } from "@/context/PaymentProcessorContext";
 import { PaymentsContext, PaymentsContextType } from "@/context/PaymentsContext";
 import { MemberDetailsContext, MemberDetailsContextType } from "@/context/MemberDetailsContext";
+import {
+  ThirdPartyButtonContext,
+  ThirdPartyButtonContextType,
+} from "@/context/ThirdPartyButtonContext";
 
 /*
  *
@@ -120,6 +124,16 @@ const useMemberDetailsContext = (): MemberDetailsContextType => {
   return { ...context };
 };
 
+const useThirdPartySignInContext = (): ThirdPartyButtonContextType => {
+  const context = useContext(ThirdPartyButtonContext);
+  if (!context) {
+    throw new Error(
+      "ThirdPartyButtonContext must be used from within the ThirdPartyButtonContext provider",
+    );
+  }
+  return { ...context };
+};
+
 export {
   /* Utilities Hook Export */
   useCMDPress,
@@ -129,4 +143,5 @@ export {
   usePaymentProcessorContext,
   usePaymentsContext,
   useMemberDetailsContext,
+  useThirdPartySignInContext,
 };

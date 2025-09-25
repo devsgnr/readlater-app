@@ -25,8 +25,18 @@ type AuthSessionType = {
   };
 };
 
+type AuthAccounts = {
+  id: string;
+  provider: string;
+  createdAt: Date;
+  updatedAt: Date;
+  accountId: string;
+  scopes: string[];
+};
+
 type AuthContextType = {
   session: AuthSessionType | null;
+  accounts: Array<AuthAccounts> | null | undefined;
   isLoading: boolean;
 };
 

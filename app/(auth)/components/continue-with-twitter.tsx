@@ -1,38 +1,15 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
-import { useRouter } from "next/navigation";
-import { toast } from "sonner";
-import { useContinueWithTwitter } from "@/app/api/hooks/auth";
-import IconPicker from "@/components/custom/IconPicker";
+import ThirdPartyButton from "./third-party-button";
 
 const ContinueWithTwitter = () => {
-  const router = useRouter();
-
-  const { mutate, isPending } = useContinueWithTwitter();
-
-  const handleSubmit = async () => {
-    mutate(undefined, {
-      onSuccess: async () => {
-        router.push("/");
-      },
-      onError: (err) => {
-        const { message } = err;
-        toast.error(message);
-      },
-    });
-  };
-
   return (
-    <Button
-      variant="outline"
-      className="w-full gap-2"
-      disabled={isPending}
-      onClick={() => handleSubmit()}
-    >
-      <IconPicker type="x" size={20} />
-      Continue with X
-    </Button>
+    <ThirdPartyButton type="twitter" redirect="/">
+      <ThirdPartyButton.Button>
+        <ThirdPartyButton.Icon type="x" />
+        Continue with X
+      </ThirdPartyButton.Button>
+    </ThirdPartyButton>
   );
 };
 

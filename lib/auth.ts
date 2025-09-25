@@ -40,7 +40,6 @@ export const auth = betterAuth({
     "http://localhost:3002",
     "http://127.0.0.1:3002",
     // Cloudflare Production Domain
-    "https://readlater.fyi",
-    "https://www.readlater.fyi",
+    "https://app.readlater.fyi",
   ],
 });
