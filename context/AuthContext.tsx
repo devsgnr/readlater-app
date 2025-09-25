@@ -1,7 +1,4 @@
-import { Tiers } from "@/types/home";
 import { createContext } from "react";
-
-type TiersRes = Array<Tiers>;
 
 type AuthSessionType = {
   user: {
@@ -25,7 +22,7 @@ type AuthSessionType = {
   };
 };
 
-type AuthAccounts = {
+type AuthAccountsType = {
   id: string;
   provider: string;
   createdAt: Date;
@@ -36,11 +33,11 @@ type AuthAccounts = {
 
 type AuthContextType = {
   session: AuthSessionType | null;
-  accounts: Array<AuthAccounts> | null | undefined;
+  accounts: Array<AuthAccountsType> | null | undefined;
   isLoading: boolean;
 };
 
 const AuthContext = createContext<AuthContextType>({} as AuthContextType);
 
-export type { AuthContextType, AuthSessionType, TiersRes };
+export type { AuthContextType, AuthSessionType, AuthAccountsType };
 export default AuthContext;

@@ -8,6 +8,7 @@ import {
   SignUpSchemaType,
 } from "@/schema/input/authentication";
 import { UpdateUserSchemaType } from "@/schema/input/profile";
+import { LinkSocial, UnlinkSocial } from "@/types/link-accounts";
 
 const useThirdPartySignIn = (type: string) => {
   return useMutation({
@@ -19,22 +20,40 @@ const useThirdPartySignIn = (type: string) => {
   });
 };
 
-const useEmailSignUp = () => {
-  type SignUp = SignUpSchemaType;
-
+const useLinkSocial = (type: string) => {
   return useMutation({
-    mutationFn: (data: SignUp) => {
-      return AuthClient.signUp.email(
-        { ...data, callbackURL: "/" },
-        {
-          onSuccess: (res) => {
-            return res.data;
-          },
-          onError: (e) => {
-            throw new Error(e.error.message, e.error);
-          },
+    mutationFn: (data?: LinkSocial) => {
+      console.log({
+        provider: type,
+        ...data,
+      });
+      return AuthClient.linkSocial({
+        provider: type,
+        ...data,
+      });
+    },
+  });
+};
+
+const useUnlinkSocial = (type: string) => {
+  return useMutation({
+    mutationFn: (data: UnlinkSocial) => {
+      return AuthClient.unlinkAccount(data);
+    },
+  });
+};
+
+const useEmailSignUp = () => {
+  return useMutation({
+    mutationFn: (data: SignUpSchemaType) => {
+      return AuthClient.signUp.email(data, {
+        onSuccess: (res) => {
+          return res.data;
         },
-      );
+        onError: (e) => {
+          throw new Error(e.error.message, e.error);
+        },
+      });
     },
   });
 };
@@ -110,10 +129,14 @@ const useSignOut = () => {
 };
 
 type useThirdPartySignInType = ReturnType<typeof useThirdPartySignIn>;
+type useLinkSocialType = ReturnType<typeof useLinkSocial>;
+type useUnlinkSocialType = ReturnType<typeof useUnlinkSocial>;
 
-export type { useThirdPartySignInType };
+export type { useThirdPartySignInType, useLinkSocialType, useUnlinkSocialType };
 export {
   useThirdPartySignIn,
+  useLinkSocial,
+  useUnlinkSocial,
   useEmailSignUp,
   useEmailSignIn,
   useRequestResetPassword,

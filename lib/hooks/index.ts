@@ -9,6 +9,10 @@ import {
   ThirdPartyButtonContext,
   ThirdPartyButtonContextType,
 } from "@/context/ThirdPartyButtonContext";
+import {
+  SocialLinkButtonContext,
+  SocialLinkButtonContextType,
+} from "@/context/SocialLinkButtonContext";
 
 /*
  *
@@ -134,6 +138,16 @@ const useThirdPartySignInContext = (): ThirdPartyButtonContextType => {
   return { ...context };
 };
 
+const useSocialLinkContext = (): SocialLinkButtonContextType => {
+  const context = useContext(SocialLinkButtonContext);
+  if (!context) {
+    throw new Error(
+      "SocialLinkButtonContext must be used from within the SocialLinkButtonContext provider",
+    );
+  }
+  return { ...context };
+};
+
 export {
   /* Utilities Hook Export */
   useCMDPress,
@@ -144,4 +158,5 @@ export {
   usePaymentsContext,
   useMemberDetailsContext,
   useThirdPartySignInContext,
+  useSocialLinkContext,
 };

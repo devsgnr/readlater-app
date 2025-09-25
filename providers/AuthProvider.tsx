@@ -1,9 +1,9 @@
 "use client";
 
-import { useGetUserAccount } from "@/app/api/hooks/auth";
 import LoadingPage from "@/app/loading";
 import AuthContext from "@/context/AuthContext";
 import { AuthClient } from "@/lib/auth-client";
+import { useGetUserAccount } from "@/app/api/hooks/auth";
 import { usePathname, useRouter } from "next/navigation";
 
 type Props = {

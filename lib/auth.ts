@@ -5,6 +5,11 @@ import { nextCookies } from "better-auth/next-js";
 import { prisma } from "./prisma-client";
 
 export const auth = betterAuth({
+  account: {
+    accountLinking: {
+      enabled: true,
+    },
+  },
   socialProviders: {
     google: {
       clientId: process.env.BETTER_AUTH_GOOGLE_CLIENT_ID!,
