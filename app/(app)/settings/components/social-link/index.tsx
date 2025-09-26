@@ -69,7 +69,7 @@ const SocialLinkButtonLink = ({ children, accountId }: ButtonProps) => {
     <Button
       size="sm"
       variant="ghost"
-      className={cn("gap-2 text-xs", { hidden: accountId })}
+      className={cn("gap-2 text-xs capitalize h-fit py-1", { hidden: accountId })}
       disabled={isPending}
       onClick={() => handleSubmit()}
     >
@@ -85,7 +85,7 @@ const SocialLinkButtonUnlink = ({ children, accountId }: ButtonProps) => {
 
   const handleSubmit = async () => {
     const data = { providerId: type, accountId };
-    const message = `Unlinking ${capitalize(type)}`;
+    const message = `Disconnecting ${capitalize(type)}`;
     toast.loading(message, { id: "social-link" });
 
     mutate(data, {
@@ -106,9 +106,12 @@ const SocialLinkButtonUnlink = ({ children, accountId }: ButtonProps) => {
     <Button
       size="sm"
       variant="ghost"
-      className={cn("gap-2 hidden text-xs text-destructive hover:text-destructive", {
-        block: accountId,
-      })}
+      className={cn(
+        "gap-2 hidden text-xs capitalize h-fit py-1 text-destructive hover:text-destructive",
+        {
+          block: accountId,
+        },
+      )}
       disabled={isPending}
       onClick={() => handleSubmit()}
     >

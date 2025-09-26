@@ -45,9 +45,9 @@ const ChangeNameForm = () => {
         <FormikProvider value={formik}>
           <form
             onSubmit={formik.handleSubmit}
-            className="flex flex-col w-full ring-1 ring-muted rounded-md"
+            className="flex flex-col w-full ring-1 ring-sidebar-border rounded-sm"
           >
-            <div className="bg-background p-5 flex flex-col gap-4 rounded-t-md border-b border-muted">
+            <div className="bg-background p-5 flex flex-col gap-4 rounded-t-sm border-b border-sidebar-border">
               <div className="flex flex-col gap-2">
                 <h1 className="text-xl font-semibold tracking-tight">Name</h1>
                 <p className="text-sm text-muted-foreground text-wrap">Update your full name</p>

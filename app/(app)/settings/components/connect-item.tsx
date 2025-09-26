@@ -13,20 +13,34 @@ interface Props {
 const Account = ({ acc }: Props) => {
   return (
     <SocialLinkButton type={acc.provider}>
-      <div className="w-full flex items-center gap-3 py-1">
-        <IconPicker type={acc.provider} size={20} />
-        <p className="capitalize text-sm mr-auto">{acc.provider}</p>
+      <div className="grid gap-0.5 items-center px-5 py-3 shadow-[0_0_0_1px_var(--sidebar-border)]">
+        <div className="w-full flex items-center gap-2 py-1">
+          <IconPicker type={acc.provider} size={20} />
+          <p className="capitalize text-sm mr-auto">{acc.provider}</p>
 
-        {acc.createdAt && (
-          <Badge className="font-medium font-mono px-2 text-[11px]" variant="outline">
-            Approved -&gt; <DateView date={acc.createdAt.toISOString()} />
-          </Badge>
-        )}
+          {acc.createdAt && (
+            <Badge
+              className="font-medium font-mono px-2 text-[11px] text-muted-foreground"
+              variant="outline"
+            >
+              Approved -&gt; <DateView date={acc.createdAt.toISOString()} />
+            </Badge>
+          )}
 
-        <div className="flex items-center gap-1 !text-xs">
-          <SocialLinkButton.Link accountId={acc.accountId}>Link</SocialLinkButton.Link>
-          <SocialLinkButton.Unlink accountId={acc.accountId}>Unlink</SocialLinkButton.Unlink>
+          <div className="flex items-center gap-1 !text-xs">
+            <SocialLinkButton.Link accountId={acc.accountId}>
+              Connect {acc.provider}
+            </SocialLinkButton.Link>
+            <SocialLinkButton.Unlink accountId={acc.accountId}>
+              Disconnect {acc.provider}
+            </SocialLinkButton.Unlink>
+          </div>
         </div>
+
+        <p className="text-xs text-muted-foreground">
+          You can log in with your <span className="capitalize">{acc.provider}</span> account.
+          We&apos;ll never perform any action without your permission
+        </p>
       </div>
     </SocialLinkButton>
   );
