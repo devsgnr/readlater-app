@@ -1,6 +1,6 @@
 "use client";
 
-import { LINK_ACCOUNTS } from "./constant";
+import { LINK_ACCOUNTS } from "../constant";
 import { useAuthContext } from "@/lib/hooks";
 import Account from "./connect-item";
 import { AuthAccountsType } from "@/context/AuthContext";

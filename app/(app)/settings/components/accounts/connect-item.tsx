@@ -1,7 +1,7 @@
 "use client";
 
 import DateView from "@/components/custom/Date";
-import SocialLinkButton from "../components/social-link";
+import SocialLinkButton from "../../components/social-link";
 import IconPicker from "@/components/custom/IconPicker";
 import { AuthAccountsType } from "@/context/AuthContext";
 import { Badge } from "@/components/ui/badge";
@@ -27,7 +27,7 @@ const Account = ({ acc }: Props) => {
             </Badge>
           )}
 
-          <div className="flex items-center gap-1 !text-xs">
+          <div className="flex items-center gap-1">
             <SocialLinkButton.Link accountId={acc.accountId}>
               Connect {acc.provider}
             </SocialLinkButton.Link>

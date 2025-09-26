@@ -69,7 +69,7 @@ const SocialLinkButtonLink = ({ children, accountId }: ButtonProps) => {
     <Button
       size="sm"
       variant="ghost"
-      className={cn("gap-2 text-xs capitalize h-fit py-1", { hidden: accountId })}
+      className={cn("gap-2 text-xs font-normal capitalize h-fit py-1", { hidden: accountId })}
       disabled={isPending}
       onClick={() => handleSubmit()}
     >
@@ -107,7 +107,7 @@ const SocialLinkButtonUnlink = ({ children, accountId }: ButtonProps) => {
       size="sm"
       variant="ghost"
       className={cn(
-        "gap-2 hidden text-xs capitalize h-fit py-1 text-destructive hover:text-destructive",
+        "gap-2 hidden font-normal text-xs capitalize h-fit py-1 text-destructive hover:text-destructive",
         {
           block: accountId,
         },
