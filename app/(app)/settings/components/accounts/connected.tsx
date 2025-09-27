@@ -2,13 +2,15 @@
 
 import { LINK_ACCOUNTS } from "../constant";
 import { useAuthContext } from "@/lib/hooks";
-import Account from "./connect-item";
+import Account, { AccountCredential } from "./connect-item";
 import { AuthAccountsType } from "@/context/AuthContext";
 
 const LinkedAccounts = () => {
   const { accounts } = useAuthContext();
-  const _accounts: Record<number, AuthAccountsType> = { ...LINK_ACCOUNTS, ...accounts };
-  const __accounts: AuthAccountsType[] = Object.values(_accounts);
+  const _credential = accounts?.filter((v) => v.provider === "credential");
+  const _accounts = accounts?.filter((v) => v.provider !== "credential");
+  const __accounts: Record<number, AuthAccountsType> = { ...LINK_ACCOUNTS, ..._accounts };
+  const ___accounts: AuthAccountsType[] = Object.values(__accounts);
 
   return (
     <div className="bg-background flex flex-col ring-1 ring-sidebar-border rounded-sm">
@@ -20,7 +22,11 @@ const LinkedAccounts = () => {
       </div>
 
       <div className="grid gap-[1px]">
-        {__accounts?.map((acc) => (
+        {_credential?.map((acc) => (
+          <AccountCredential acc={acc} />
+        ))}
+
+        {___accounts?.map((acc) => (
           <Account key={acc.id + acc.provider} acc={acc} />
         ))}
       </div>

@@ -2,13 +2,16 @@ import { AuthClient } from "@/lib/auth-client";
 import { useMutation, useQuery } from "@tanstack/react-query";
 
 import {
+  ChangePasswordSchemaType,
   ForgotPasswordSchemaType,
   ResetPasswordSchemaType,
+  SetPasswordSchemaType,
   SignInSchemaType,
   SignUpSchemaType,
 } from "@/schema/input/authentication";
 import { UpdateUserSchemaType } from "@/schema/input/profile";
 import { LinkSocial, UnlinkSocial } from "@/types/link-accounts";
+import { SetPassword } from "./api-call";
 
 const useThirdPartySignIn = (type: string) => {
   return useMutation({
@@ -104,6 +107,22 @@ const useResetPassword = () => {
   });
 };
 
+const useSetPassword = () => {
+  return useMutation({
+    mutationFn: (data: SetPasswordSchemaType) => {
+      return SetPassword(data);
+    },
+  });
+};
+
+const useChangePassword = () => {
+  return useMutation({
+    mutationFn: (data: ChangePasswordSchemaType) => {
+      return AuthClient.changePassword(data);
+    },
+  });
+};
+
 const useUpdateUser = () => {
   return useMutation({
     mutationFn: (data: UpdateUserSchemaType) => {
@@ -142,6 +161,8 @@ export {
   useEmailSignIn,
   useRequestResetPassword,
   useResetPassword,
+  useSetPassword,
+  useChangePassword,
   useUpdateUser,
   useGetUserAccount,
   useSignOut,

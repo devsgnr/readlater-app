@@ -28,6 +28,7 @@ const IconPicker = React.memo(({ type, size = 18, ...rest }: Props) => {
     bluecheck: <BlueCheckIcon width={size} height={size} {...rest} />,
     PDF: <PDFIcon width={size} height={size} {...rest} />,
     chrome: <ChromeIcon width={size} height={size} {...rest} />,
+    credential: <BlueCheckIcon width={size} height={size} {...rest} />,
   };
 
   const Resolved = () => Icons[type];

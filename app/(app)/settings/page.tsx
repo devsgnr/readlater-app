@@ -1,7 +1,7 @@
 "use client";
 
 import LinkedAccounts from "./components/accounts/connected";
-import SetPasswordForm from "./components/set-password";
+import Password from "./components/password";
 
 const AccountSettings = () => {
   return (
@@ -16,8 +16,8 @@ const AccountSettings = () => {
       {/** Linked Accounts Section */}
       <LinkedAccounts />
 
-      {/** Set Password Section */}
-      <SetPasswordForm />
+      {/** Password Section */}
+      <Password />
     </div>
   );
 };
