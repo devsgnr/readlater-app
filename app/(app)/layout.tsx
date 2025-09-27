@@ -23,8 +23,11 @@ import AppNavbar from "./components/AppNavbar";
 import ReadlaterToaster from "@/components/custom/ReadlaterToaster";
 import { SidebarProvider } from "@/components/ui/sidebar";
 import TopBar from "./components/TopBar";
+import { useSidebarStore } from "@/stores/SidebarStateStore";
 
 const AppLayout = ({ children }: { children: React.ReactNode }) => {
+  const { open, actions } = useSidebarStore();
+
   return (
     <ThemeProvider
       storageKey="readlater-theme"
@@ -38,7 +41,7 @@ const AppLayout = ({ children }: { children: React.ReactNode }) => {
             <ApolloProvider client={AppApolloClient}>
               <PaymentsProvider>
                 {/** Sidebar Layout Level */}
-                <SidebarProvider>
+                <SidebarProvider open={open} onOpenChange={(v) => actions.setSidebarState(v)}>
                   <AppNavbar />
                   <main className="w-full whitespace-nowrap box-border overflow-x-hidden">
                     <TopBar />

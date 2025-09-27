@@ -20,7 +20,7 @@ const Account = ({ acc }: Props) => {
 
           {acc.createdAt && (
             <Badge
-              className="font-semibold font-mono px-2 text-[11px] text-muted-foreground"
+              className="font-medium font-mono px-2 text-[11px] text-muted-foreground"
               variant="outline"
             >
               Approved -&gt; <DateView date={acc.createdAt.toISOString()} />
