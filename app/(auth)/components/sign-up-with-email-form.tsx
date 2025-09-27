@@ -9,9 +9,9 @@ import { SignUpSchema, SignUpSchemaType } from "@/schema/input/authentication";
 import { toast } from "sonner";
 import DayterInput from "@/components/custom/Input";
 import Link from "next/link";
-import { ArrowRight } from "@untitled-ui/icons-react";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { useEmailSignUp } from "@/app/api/hooks/auth";
+import ButtonTextWrapper from "@/components/custom/ButtonTextWrapper";
 
 const SignUpEmailForm = () => {
   const router = useRouter();
@@ -93,8 +93,7 @@ const SignUpEmailForm = () => {
             />
 
             <Button type="submit" className="w-full gap-2" disabled={isPending}>
-              Sign Up
-              <ArrowRight width={16} />
+              <ButtonTextWrapper isLoading={isPending}>Sign Up</ButtonTextWrapper>
             </Button>
           </form>
         </FormikProvider>

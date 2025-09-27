@@ -3,10 +3,12 @@ import IconPicker from "@/components/custom/IconPicker";
 import { Button } from "@/components/ui/button";
 import { ThirdPartyButtonContext } from "@/context/ThirdPartyButtonContext";
 import { useThirdPartySignInContext } from "@/lib/hooks";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import React from "react";
 import { toast } from "sonner";
 import { capitalize } from "lodash";
+import { AnimatePresence, motion } from "motion/react";
+import { Loader2 } from "lucide-react";
 
 interface Props {
   children: React.ReactNode;
@@ -32,6 +34,12 @@ interface IconProps {
   type: string;
 }
 
+interface WrapperProps {
+  children: React.ReactNode;
+  isLoading: boolean;
+  type: string;
+}
+
 /**
  *
  * @param  children React.ReactNode: required
@@ -52,8 +60,7 @@ const ThirdPartyButton = ({ children, type, redirect }: Props) => {
 };
 
 const ThirdPartyButtonButton = ({ children, variant = "outline" }: ButtonProps) => {
-  const router = useRouter();
-  const { hook, type, redirect } = useThirdPartySignInContext();
+  const { hook, type } = useThirdPartySignInContext();
   const { mutate, isPending } = hook;
 
   const handleSubmit = async () => {
@@ -63,7 +70,6 @@ const ThirdPartyButtonButton = ({ children, variant = "outline" }: ButtonProps) 
     mutate(undefined, {
       onSuccess: async () => {
         toast.dismiss("social-login");
-        router.push(redirect);
       },
       onError: (err) => {
         const { message } = err;
@@ -80,13 +86,39 @@ const ThirdPartyButtonButton = ({ children, variant = "outline" }: ButtonProps) 
       disabled={isPending}
       onClick={() => handleSubmit()}
     >
-      {children}
+      <ThirdPartyButtonContentWrapper type={type} isLoading={isPending}>
+        {children}
+      </ThirdPartyButtonContentWrapper>
     </Button>
   );
 };
 
 const ThirdPartyButtonIcon = ({ type }: IconProps) => {
-  return <IconPicker type={type} size={20} />;
+  return <IconPicker type={type} size={24} />;
+};
+
+const ThirdPartyButtonContentWrapper = ({ children, isLoading, type }: WrapperProps) => {
+  const utils = { transition: { duration: 0.2 } };
+
+  return (
+    <AnimatePresence>
+      <span className="flex items-center gap-1.5">
+        {isLoading && (
+          <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} exit={{ scale: 0 }}>
+            <Loader2 className="animate-spin" size={16} />
+          </motion.div>
+        )}
+
+        {!isLoading && (
+          <motion.div {...utils} initial={{ scale: 1 }} animate={{ scale: 1 }} exit={{ scale: 0 }}>
+            <ThirdPartyButtonIcon type={type} />
+          </motion.div>
+        )}
+
+        {children}
+      </span>
+    </AnimatePresence>
+  );
 };
 
 ThirdPartyButtonButton.displayName = "ThirdPartyButton.Button";

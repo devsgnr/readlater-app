@@ -28,7 +28,7 @@ const UserDropdown = () => {
       onSuccess: (res) => {
         toast.dismiss("logout");
         toast.success("Logged out successfully");
-        Router.push("/");
+        Router.push("/sign-in");
       },
       onError: (err) => {
         const { message } = err;
@@ -51,8 +51,8 @@ const UserDropdown = () => {
               <ProfileImage src={session?.user.image} alt={session?.user.name} size={30} />
 
               <div className="flex flex-col items-start">
-                <p className="text-[13px] font-medium">{session?.user.name}</p>
-                <p className="text-xs">{session?.user.email}</p>
+                <p className="text-xs font-medium">{session?.user.name}</p>
+                <p className="text-xs text-muted-foreground">{session?.user.email}</p>
               </div>
 
               <ChevronDown
@@ -74,7 +74,7 @@ const UserDropdown = () => {
             size={30}
           />
           <div className="grid gap-px text-sm">
-            <p>{session?.user.name}</p>
+            <p className="text-xs font-medium">{session?.user.name}</p>
             <p className="text-xs text-muted-foreground">{session?.user.email}</p>
           </div>
         </div>

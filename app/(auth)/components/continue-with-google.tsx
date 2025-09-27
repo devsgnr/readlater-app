@@ -5,10 +5,7 @@ import ThirdPartyButton from "./third-party-button";
 const ContinueWithGoogle = () => {
   return (
     <ThirdPartyButton type="google" redirect="/">
-      <ThirdPartyButton.Button>
-        <ThirdPartyButton.Icon type="google" />
-        Continue with Google
-      </ThirdPartyButton.Button>
+      <ThirdPartyButton.Button>Continue with Google</ThirdPartyButton.Button>
     </ThirdPartyButton>
   );
 };

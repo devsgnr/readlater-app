@@ -33,9 +33,9 @@ const SetPasswordForm = () => {
             className="flex flex-col w-full ring-1 ring-sidebar-border rounded-sm"
           >
             <div className="bg-background p-5 flex flex-col gap-4 rounded-t-sm border-b border-sidebar-border">
-              <div className="flex flex-col gap-2">
-                <h1 className="text-xl font-semibold tracking-tight">Set Password</h1>
-                <p className="text-sm text-muted-foreground text-wrap">
+              <div className="flex flex-col gap-0.5">
+                <h1 className="text-base font-semibold tracking-tight">Set Password</h1>
+                <p className="text-xs text-muted-foreground text-wrap">
                   Set a password for your account, so you can login with email
                 </p>
               </div>
@@ -51,13 +51,13 @@ const SetPasswordForm = () => {
                   onChange={formik.handleChange}
                   error={formik.errors.name}
                   required
-                  className="h-10"
+                  className="h-10 text-xs"
                 />
               </div>
             </div>
 
             <div className="py-2 px-5 flex justify-end">
-              <Button type="submit" className="w-fit gap-2">
+              <Button size="sm" type="submit" className="w-fit gap-2">
                 Set Password
                 <ArrowRight width={16} />
               </Button>

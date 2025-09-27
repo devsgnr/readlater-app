@@ -8,9 +8,9 @@ import { FormikProvider, useFormik } from "formik";
 import { ResetPasswordSchema, ResetPasswordSchemaType } from "@/schema/input/authentication";
 import { toast } from "sonner";
 import DayterInput from "@/components/custom/Input";
-import { ArrowRight } from "@untitled-ui/icons-react";
 import { useResetPassword } from "@/app/api/hooks/auth";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import ButtonTextWrapper from "@/components/custom/ButtonTextWrapper";
 
 type Props = {
   token: string | null;
@@ -71,8 +71,7 @@ const ResetPasswordForm = ({ token }: Props) => {
             />
 
             <Button type="submit" className="w-full gap-2" disabled={isPending}>
-              Reset Password
-              <ArrowRight width={16} />
+              <ButtonTextWrapper isLoading={isPending}>Reset Password</ButtonTextWrapper>
             </Button>
           </form>
         </FormikProvider>

@@ -13,14 +13,14 @@ interface Props {
 const Account = ({ acc }: Props) => {
   return (
     <SocialLinkButton type={acc.provider}>
-      <div className="grid gap-0.5 items-center px-5 py-3 shadow-[0_0_0_1px_var(--sidebar-border)]">
+      <div className="grid gap-0.5 items-center px-5 py-3 shadow-[0_-1px_0_0_var(--sidebar-border)]">
         <div className="w-full flex items-center gap-2 py-1">
           <IconPicker type={acc.provider} size={20} />
           <p className="capitalize text-sm mr-auto">{acc.provider}</p>
 
           {acc.createdAt && (
             <Badge
-              className="font-medium font-mono px-2 text-[11px] text-muted-foreground"
+              className="font-semibold font-mono px-2 text-[11px] text-muted-foreground"
               variant="outline"
             >
               Approved -&gt; <DateView date={acc.createdAt.toISOString()} />

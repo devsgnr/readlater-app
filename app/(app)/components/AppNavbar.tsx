@@ -1,6 +1,5 @@
 "use client";
 
-import { nanoid } from "nanoid";
 import { usePathname } from "next/navigation";
 import {
   Sidebar,
@@ -14,7 +13,6 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
 import Link from "next/link";
-import { Home, User } from "lucide-react";
 import UserDropdown from "./UserDropDown";
 import { NavItem } from "./constant";
 
@@ -25,7 +23,7 @@ const AppNavbar = () => {
     <Sidebar collapsible="icon">
       <SidebarContent>
         <SidebarGroup>
-          <SidebarGroupLabel>Application</SidebarGroupLabel>
+          <SidebarGroupLabel>Readlater</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               {NavItem.map((item) => (

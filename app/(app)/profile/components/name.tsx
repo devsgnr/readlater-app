@@ -5,12 +5,12 @@ import { Button } from "@/components/ui/button";
 import { User } from "lucide-react";
 import { FormikProvider, useFormik } from "formik";
 import { toast } from "sonner";
-import { ArrowRight } from "@untitled-ui/icons-react";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { UpdateUserSchema, UpdateUserSchemaType } from "@/schema/input/profile";
 import DayterInput from "@/components/custom/Input";
 import { useAuthContext } from "@/lib/hooks";
 import { useUpdateUser } from "@/app/api/hooks/auth";
+import ButtonTextWrapper from "@/components/custom/ButtonTextWrapper";
 
 const ChangeNameForm = () => {
   const { session } = useAuthContext();
@@ -48,9 +48,9 @@ const ChangeNameForm = () => {
             className="flex flex-col w-full ring-1 ring-sidebar-border rounded-sm"
           >
             <div className="bg-background p-5 flex flex-col gap-4 rounded-t-sm border-b border-sidebar-border">
-              <div className="flex flex-col gap-2">
-                <h1 className="text-xl font-semibold tracking-tight">Name</h1>
-                <p className="text-sm text-muted-foreground text-wrap">Update your full name</p>
+              <div className="flex flex-col gap-0">
+                <h1 className="text-base font-semibold tracking-tight">Name</h1>
+                <p className="text-xs text-muted-foreground text-wrap">Update your display name</p>
               </div>
 
               <div className="max-w-80">
@@ -71,9 +71,8 @@ const ChangeNameForm = () => {
             </div>
 
             <div className="py-2 px-5 flex justify-end">
-              <Button type="submit" className="w-fit gap-2" disabled={isPending}>
-                Save Changes
-                <ArrowRight width={16} />
+              <Button size="sm" type="submit" className="w-fit gap-2" disabled={isPending}>
+                <ButtonTextWrapper isLoading={isPending}>Save Changes</ButtonTextWrapper>
               </Button>
             </div>
           </form>

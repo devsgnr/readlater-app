@@ -15,6 +15,7 @@ const useThirdPartySignIn = (type: string) => {
     mutationFn: () => {
       return AuthClient.signIn.social({
         provider: type,
+        callbackURL: "/",
       });
     },
   });

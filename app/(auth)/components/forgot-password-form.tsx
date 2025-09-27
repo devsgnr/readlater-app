@@ -9,9 +9,9 @@ import { ForgotPasswordSchema, ForgotPasswordSchemaType } from "@/schema/input/a
 import { toast } from "sonner";
 import DayterInput from "@/components/custom/Input";
 import Link from "next/link";
-import { ArrowRight } from "@untitled-ui/icons-react";
 import { useRequestResetPassword } from "@/app/api/hooks/auth";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import ButtonTextWrapper from "@/components/custom/ButtonTextWrapper";
 
 const ForgotPasswordForm = () => {
   const router = useRouter();
@@ -33,7 +33,7 @@ const ForgotPasswordForm = () => {
 
   const initialValues = {
     email: "",
-    redirectTo: "//auth/reset-password",
+    redirectTo: "/auth/reset-password",
   };
 
   const formik = useFormik({
@@ -62,8 +62,7 @@ const ForgotPasswordForm = () => {
             />
 
             <Button type="submit" className="w-full gap-2" disabled={isPending}>
-              Send Reset Link
-              <ArrowRight width={16} />
+              <ButtonTextWrapper isLoading={isPending}>Send Reset Link</ButtonTextWrapper>
             </Button>
           </form>
         </FormikProvider>
