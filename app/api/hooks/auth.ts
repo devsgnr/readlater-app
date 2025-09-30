@@ -140,6 +140,15 @@ const useGetUserAccount = () => {
   });
 };
 
+const useGetLastLoginMethod = () => {
+  return useQuery({
+    queryKey: ["getLastLoginMethod"],
+    queryFn: () => {
+      return AuthClient.getLastUsedLoginMethod();
+    },
+  });
+};
+
 const useSignOut = () => {
   return useMutation({
     mutationFn: () => {
@@ -165,5 +174,6 @@ export {
   useChangePassword,
   useUpdateUser,
   useGetUserAccount,
+  useGetLastLoginMethod,
   useSignOut,
 };

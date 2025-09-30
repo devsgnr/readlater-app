@@ -89,9 +89,11 @@ const ChangePasswordForm = () => {
             </div>
 
             <div className="py-2 px-5 flex items-center justify-between">
-              <div className="flex items-center gap-1 text-destructive/70 text-xs">
+              <div className="flex items-center gap-1 text-muted-foreground text-xs">
                 <TriangleAlert size={16} />
-                <p className="h-4">Upon update all other sessions will be revoked (logged out)</p>
+                <p className="h-[14px]">
+                  Upon update all other sessions will be revoked (logged out)
+                </p>
               </div>
 
               <Button size="sm" type="submit" className="w-fit gap-2" disabled={isPending}>

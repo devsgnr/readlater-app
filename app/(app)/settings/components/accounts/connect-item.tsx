@@ -3,20 +3,20 @@
 import DateView from "@/components/custom/Date";
 import SocialLinkButton from "../../components/social-link";
 import IconPicker from "@/components/custom/IconPicker";
-import { AuthAccountsType } from "@/context/AuthContext";
 import { Badge } from "@/components/ui/badge";
+import { AccountsType } from "@/context/AccountsContext";
 
 interface Props {
-  acc: AuthAccountsType;
+  acc: AccountsType;
 }
 
 const Account = ({ acc }: Props) => {
   return (
-    <SocialLinkButton type={acc.provider}>
+    <SocialLinkButton type={acc.providerId}>
       <div className="grid gap-0.5 items-center px-5 py-3 shadow-[0_-1px_0_0_var(--sidebar-border)]">
         <div className="w-full flex items-center gap-2 py-1">
-          <IconPicker type={acc.provider} size={20} />
-          <p className="capitalize text-sm mr-auto">{acc.provider}</p>
+          <IconPicker type={acc.providerId} size={20} />
+          <p className="capitalize text-sm mr-auto">{acc.providerId}</p>
 
           {acc.createdAt && (
             <Badge className="font-medium px-2 text-[11px] text-muted-foreground" variant="outline">
@@ -26,17 +26,18 @@ const Account = ({ acc }: Props) => {
 
           <div className="flex items-center gap-1">
             <SocialLinkButton.Link accountId={acc.accountId}>
-              Connect {acc.provider}
+              Connect {acc.providerId}
             </SocialLinkButton.Link>
             <SocialLinkButton.Unlink accountId={acc.accountId}>
-              Disconnect {acc.provider}
+              Disconnect {acc.providerId}
             </SocialLinkButton.Unlink>
           </div>
         </div>
 
         <p className="text-xs text-muted-foreground">
-          You can log in with your <span className="capitalize font-semibold">{acc.provider}</span>{" "}
-          account. We&apos;ll never perform any action without your permission
+          You can log in with your{" "}
+          <span className="capitalize font-semibold">{acc.providerId}</span> account. We&apos;ll
+          never perform any action without your permission
         </p>
       </div>
     </SocialLinkButton>
@@ -45,11 +46,11 @@ const Account = ({ acc }: Props) => {
 
 const AccountCredential = ({ acc }: Props) => {
   return (
-    <SocialLinkButton type={acc.provider}>
+    <SocialLinkButton type={acc.providerId}>
       <div className="grid gap-0.5 items-center px-5 py-3 shadow-[0_-1px_0_0_var(--sidebar-border)]">
         <div className="w-full flex items-center gap-2 py-1">
-          <IconPicker type={acc.provider} size={20} />
-          <p className="capitalize text-sm mr-auto">{acc.provider}</p>
+          <IconPicker type={acc.providerId} size={20} />
+          <p className="capitalize text-sm mr-auto">{acc.providerId}</p>
 
           {acc.createdAt && (
             <Badge className="font-medium px-2 text-[11px] text-muted-foreground" variant="outline">

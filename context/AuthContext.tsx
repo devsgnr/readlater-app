@@ -22,22 +22,13 @@ type AuthSessionType = {
   };
 };
 
-type AuthAccountsType = {
-  id: string;
-  provider: string;
-  createdAt: Date;
-  updatedAt: Date;
-  accountId: string;
-  scopes: string[];
-};
-
 type AuthContextType = {
   session: AuthSessionType | null;
-  accounts: Array<AuthAccountsType> | null | undefined;
+  lastLogin: string | null | undefined;
   isLoading: boolean;
 };
 
 const AuthContext = createContext<AuthContextType>({} as AuthContextType);
 
-export type { AuthContextType, AuthSessionType, AuthAccountsType };
+export type { AuthContextType, AuthSessionType };
 export default AuthContext;

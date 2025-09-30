@@ -13,6 +13,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { Checkbox } from "@/components/ui/checkbox";
 import { useEmailSignIn } from "@/app/api/hooks/auth";
 import ButtonTextWrapper from "@/components/custom/ButtonTextWrapper";
+import LastLoginUsed from "@/components/custom/LastUsed";
 
 const SignInEmailForm = () => {
   const router = useRouter();
@@ -95,7 +96,8 @@ const SignInEmailForm = () => {
               </div>
             </div>
 
-            <Button type="submit" className="w-full gap-2" disabled={isPending}>
+            <Button type="submit" className="w-full gap-2 relative" disabled={isPending}>
+              <LastLoginUsed provider={"email"} />
               <ButtonTextWrapper isLoading={isPending}>Sign in</ButtonTextWrapper>
             </Button>
           </form>

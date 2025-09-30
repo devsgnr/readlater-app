@@ -13,8 +13,8 @@ import {
 } from "jsx-email";
 
 export const previewProps = {
-  url: "https://nss.org.ng/",
-  name: "Dr. Emmanuel Watila",
+  url: "https://readlater.fyi/",
+  name: "Emmanuel Watila",
 };
 
 export const templateName = "reset-password";
@@ -24,23 +24,19 @@ export const Template = ({ name, url }) => (
     <Head />
     <Body style={main}>
       <Preview>
-        You made a request to reset the password for your account. If you made this request, please
-        click the button below to set a new password:
+        You made a request to reset the password for your Readlater account. If you made this
+        request, please click the button below to set a new password:
       </Preview>
       <Container style={container}>
         <Section style={coverSection}>
-          <Section style={imageSection}>
-            <Img src="https://nss.org.ng/nss_logo.png" height={40} />
-          </Section>
-
           <Section style={upperSection}>
-            <Heading style={h1}>Reset your password</Heading>
+            <Heading style={h1}>Reset your Readlater password</Heading>
 
             <Text style={mainText}>Hello — {name},</Text>
 
             <Text style={mainText}>
-              You made a request to reset the password for your account. If you made this request,
-              please click the button below to set a new password:
+              You made a request to reset the password for your Readlater account. If you made this
+              request, please click the button below to set a new password:
             </Text>
 
             <Section style={verificationSection}>
@@ -58,10 +54,8 @@ export const Template = ({ name, url }) => (
           </Section>
         </Section>
         <Section style={footerSection}>
-          <Text style={footerText}>NSS (Nigerian Sleep Society)</Text>
-          <Text style={footerText}>Department of Medicine,</Text>
-          <Text style={footerText}>Obafemi Awolowo University Teaching Hospital Complex,</Text>
-          <Text style={footerText}>Ile-Ife, Nigeria.</Text>
+          <Text style={footerText}>Readlater</Text>
+          <Text style={footerText}>&copy;{new Date().getFullYear()} Readlater</Text>
         </Section>
       </Container>
     </Body>
@@ -79,7 +73,7 @@ const container = {
 };
 
 const button = {
-  backgroundColor: "#07662e",
+  backgroundColor: "#09090b",
   borderRadius: "12px",
   fontFamily:
     "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif",
@@ -130,7 +124,7 @@ const footerText = {
 
 const footerSection = {
   padding: "0 0px",
-  margin: "10px 0",
+  margin: "0px 0",
 };
 
 const verificationSection = {

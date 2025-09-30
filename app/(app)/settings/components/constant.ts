@@ -1,8 +1,8 @@
-import { AuthAccountsType } from "@/context/AuthContext";
+import { AccountsType } from "@/context/AccountsContext";
 
 const LINK_ACCOUNTS = [
-  { provider: "google" } as AuthAccountsType,
-  { provider: "twitter" } as AuthAccountsType,
+  { providerId: "google" } as AccountsType,
+  { providerId: "twitter" } as AccountsType,
 ];
 
 export { LINK_ACCOUNTS };

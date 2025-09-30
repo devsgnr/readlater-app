@@ -12,6 +12,7 @@ import {
   SocialLinkButtonContext,
   SocialLinkButtonContextType,
 } from "@/context/SocialLinkButtonContext";
+import AccountsContext, { AccountsContextType } from "@/context/AccountsContext";
 
 /*
  *
@@ -137,12 +138,21 @@ const useSocialLinkContext = (): SocialLinkButtonContextType => {
   return { ...context };
 };
 
+const useAccountsContext = (): AccountsContextType => {
+  const context = useContext(AccountsContext);
+  if (!context) {
+    throw new Error("AccountsContext must be used from within the AccountsContext provider");
+  }
+  return { ...context };
+};
+
 export {
   /* Utilities Hook Export */
   useCMDPress,
   useKeyPress,
   /* Context Hook Exports */
   useAuthContext,
+  useAccountsContext,
   usePaymentProcessorContext,
   usePaymentsContext,
   useThirdPartySignInContext,

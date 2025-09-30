@@ -2,13 +2,15 @@ import { useThirdPartySignIn } from "@/app/api/hooks/auth";
 import IconPicker from "@/components/custom/IconPicker";
 import { Button } from "@/components/ui/button";
 import { ThirdPartyButtonContext } from "@/context/ThirdPartyButtonContext";
-import { useThirdPartySignInContext } from "@/lib/hooks";
+import { useAuthContext, useThirdPartySignInContext } from "@/lib/hooks";
 import { usePathname } from "next/navigation";
 import React from "react";
 import { toast } from "sonner";
 import { capitalize } from "lodash";
 import { AnimatePresence, motion } from "motion/react";
 import { Loader2 } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
+import LastLoginUsed from "@/components/custom/LastUsed";
 
 interface Props {
   children: React.ReactNode;
@@ -38,6 +40,10 @@ interface WrapperProps {
   children: React.ReactNode;
   isLoading: boolean;
   type: string;
+}
+
+interface LastUsedProps {
+  provider: string | null | undefined;
 }
 
 /**
@@ -82,10 +88,11 @@ const ThirdPartyButtonButton = ({ children, variant = "outline" }: ButtonProps) 
   return (
     <Button
       variant={variant}
-      className="w-full gap-2"
+      className="w-full gap-2 relative"
       disabled={isPending}
       onClick={() => handleSubmit()}
     >
+      <ThirdPartyButtonLastUsed />
       <ThirdPartyButtonContentWrapper type={type} isLoading={isPending}>
         {children}
       </ThirdPartyButtonContentWrapper>
@@ -95,6 +102,12 @@ const ThirdPartyButtonButton = ({ children, variant = "outline" }: ButtonProps) 
 
 const ThirdPartyButtonIcon = ({ type }: IconProps) => {
   return <IconPicker type={type} size={24} />;
+};
+
+const ThirdPartyButtonLastUsed = () => {
+  const { type } = useThirdPartySignInContext();
+
+  return <LastLoginUsed provider={type} />;
 };
 
 const ThirdPartyButtonContentWrapper = ({ children, isLoading, type }: WrapperProps) => {

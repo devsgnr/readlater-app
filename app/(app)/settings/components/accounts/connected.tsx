@@ -1,16 +1,16 @@
 "use client";
 
 import { LINK_ACCOUNTS } from "../constant";
-import { useAuthContext } from "@/lib/hooks";
+import { useAccountsContext } from "@/lib/hooks";
 import Account, { AccountCredential } from "./connect-item";
-import { AuthAccountsType } from "@/context/AuthContext";
+import { AccountsType } from "@/context/AccountsContext";
 
 const LinkedAccounts = () => {
-  const { accounts } = useAuthContext();
-  const _credential = accounts?.filter((v) => v.provider === "credential");
-  const _accounts = accounts?.filter((v) => v.provider !== "credential");
-  const __accounts: Record<number, AuthAccountsType> = { ...LINK_ACCOUNTS, ..._accounts };
-  const ___accounts: AuthAccountsType[] = Object.values(__accounts);
+  const { accounts } = useAccountsContext();
+  const _credential = accounts?.filter((v) => v.providerId === "credential");
+  const _accounts = accounts?.filter((v) => v.providerId !== "credential");
+  const __accounts: Record<number, AccountsType> = { ...LINK_ACCOUNTS, ..._accounts };
+  const ___accounts: AccountsType[] = Object.values(__accounts);
 
   return (
     <div className="bg-background flex flex-col ring-1 ring-sidebar-border rounded-sm">
@@ -27,7 +27,7 @@ const LinkedAccounts = () => {
         ))}
 
         {___accounts?.map((acc) => (
-          <Account key={acc.id + acc.provider} acc={acc} />
+          <Account key={acc.id + acc.providerId} acc={acc} />
         ))}
       </div>
     </div>

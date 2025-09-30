@@ -1,8 +1,15 @@
+import { Polar } from "@polar-sh/sdk";
 import { betterAuth } from "better-auth";
 import { prismaAdapter } from "better-auth/adapters/prisma";
+import { polar, checkout } from "@polar-sh/better-auth";
 import { SendResetPasswordEmail, SendVerifyEmail } from "./email-client";
 import { nextCookies } from "better-auth/next-js";
+import { lastLoginMethod } from "better-auth/plugins";
 import { prisma } from "./prisma-client";
+
+const polarClient = new Polar({
+  accessToken: process.env.POLAR_ACCESS_TOKEN!,
+});
 
 export const auth = betterAuth({
   account: {
@@ -39,7 +46,25 @@ export const auth = betterAuth({
     },
   },
   database: prismaAdapter(prisma, { provider: "postgresql" }),
-  plugins: [nextCookies()],
+  plugins: [
+    lastLoginMethod(),
+    nextCookies(),
+    polar({
+      client: polarClient,
+      createCustomerOnSignUp: true,
+      use: [
+        checkout({
+          authenticatedUsersOnly: true,
+          products: [
+            {
+              productId: "c5f5a69e-2042-493b-9093-6fe0fdbe9ac8",
+              slug: "Readlater",
+            },
+          ],
+        }),
+      ],
+    }),
+  ],
   trustedOrigins: [
     // Local Development Server
     "http://localhost:3002",

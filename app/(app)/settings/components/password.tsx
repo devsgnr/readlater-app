@@ -1,12 +1,12 @@
-import { useAuthContext } from "@/lib/hooks";
+import { useAccountsContext } from "@/lib/hooks";
 import { isEmpty } from "lodash";
 import ChangePasswordForm from "./change-password";
 import SetPasswordForm from "./set-password";
 import { Skeleton } from "@/components/ui/skeleton";
 
 const Password = () => {
-  const { accounts, isLoading } = useAuthContext();
-  const _credential = accounts?.filter((v) => v.provider === "credential");
+  const { accounts, isLoading } = useAccountsContext();
+  const _credential = accounts?.filter((v) => v.providerId === "credential");
 
   const credExists = !isEmpty(_credential);
 

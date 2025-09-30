@@ -24,6 +24,7 @@ import ReadlaterToaster from "@/components/custom/ReadlaterToaster";
 import { SidebarProvider } from "@/components/ui/sidebar";
 import TopBar from "./components/TopBar";
 import { useSidebarStore } from "@/stores/SidebarStateStore";
+import AccountsProvider from "@/providers/AccountsProvider";
 
 const AppLayout = ({ children }: { children: React.ReactNode }) => {
   const { open, actions } = useSidebarStore();
@@ -37,24 +38,26 @@ const AppLayout = ({ children }: { children: React.ReactNode }) => {
     >
       <QueryClientProvider client={AppTanstackQueryClient}>
         <AuthProvider>
-          <PaymentProcessorProvider>
-            <ApolloProvider client={AppApolloClient}>
-              <PaymentsProvider>
-                {/** Sidebar Layout Level */}
-                <SidebarProvider open={open} onOpenChange={(v) => actions.setSidebarState(v)}>
-                  <AppNavbar />
-                  <main className="w-full whitespace-nowrap box-border overflow-x-hidden">
-                    <TopBar />
-                    {/** Main Body */}
-                    <div className="w-full box-border">{children}</div>
-                  </main>
-                </SidebarProvider>
-              </PaymentsProvider>
+          <AccountsProvider>
+            <PaymentProcessorProvider>
+              <ApolloProvider client={AppApolloClient}>
+                <PaymentsProvider>
+                  {/** Sidebar Layout Level */}
+                  <SidebarProvider open={open} onOpenChange={(v) => actions.setSidebarState(v)}>
+                    <AppNavbar />
+                    <main className="w-full whitespace-nowrap box-border overflow-x-hidden">
+                      <TopBar />
+                      {/** Main Body */}
+                      <div className="w-full box-border">{children}</div>
+                    </main>
+                  </SidebarProvider>
+                </PaymentsProvider>
 
-              {/** Notification Toast Provider - via Sonner & shadcn */}
-              <ReadlaterToaster />
-            </ApolloProvider>
-          </PaymentProcessorProvider>
+                {/** Notification Toast Provider - via Sonner & shadcn */}
+                <ReadlaterToaster />
+              </ApolloProvider>
+            </PaymentProcessorProvider>
+          </AccountsProvider>
         </AuthProvider>
       </QueryClientProvider>
     </ThemeProvider>
