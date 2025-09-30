@@ -14,12 +14,13 @@ const AuthProvider = ({ children }: Props) => {
   const router = useRouter();
   const pathname = usePathname();
   const { data: session, isPending } = AuthClient.useSession();
-  const { data } = useGetUserAccount();
+  const { data, isLoading } = useGetUserAccount();
 
   const isOnSignin = pathname.includes("sign-in");
   const isOnSignup = pathname.includes("sign-up");
   const isOnAuthPage = isOnSignin || isOnSignup;
   const isOnRoot = !isOnAuthPage;
+  const isChecking = isPending || isLoading;
 
   if (isPending) return <LoadingPage />;
 
@@ -32,7 +33,7 @@ const AuthProvider = ({ children }: Props) => {
   }
 
   return (
-    <AuthContext.Provider value={{ session, accounts: data?.data, isLoading: isPending }}>
+    <AuthContext.Provider value={{ session, accounts: data?.data, isLoading: isChecking }}>
       {children}
     </AuthContext.Provider>
   );

@@ -29,11 +29,7 @@ const DayterInput = ({
       {LeftIcon &&
         (isLoading ? (
           <div className="absolute left-3 top-1/2 -translate-y-1/2 z-10 text-muted-foreground">
-            <Loader
-              width={16}
-              size={16}
-              className="animate-spin duration-2000"
-            />
+            <Loader width={16} size={16} className="animate-spin duration-2000" />
           </div>
         ) : (
           <LeftIcon
@@ -55,9 +51,7 @@ const DayterInput = ({
             <TooltipTrigger className="text-red-500" tabIndex={-1}>
               <AlertCircle width={18} height={18} />
             </TooltipTrigger>
-            <TooltipContent className="text-red-500 text-xs">
-              {error}
-            </TooltipContent>
+            <TooltipContent className="text-red-500 text-xs">{error}</TooltipContent>
           </Tooltip>
         </div>
       )}
@@ -71,14 +65,14 @@ const DayterInput = ({
       <Input
         {...rest}
         className={cn(
-          "w-full h-8 text-sm py-0",
+          "w-full h-8 !text-[13px] py-0",
           {
             "pl-9": LeftIcon,
             "pr-9": RightIcon,
-            "ring-2 ring-destructive/30 border border-red-600 ring-offset-1 placeholder:text-red-500 placeholder:text-sm":
+            "ring-2 ring-destructive/30 border border-red-600 ring-offset-1 placeholder:text-red-500 placeholder:text-[13px]":
               error,
           },
-          rest.className
+          rest.className,
         )}
         onKeyDown={(e) => e.stopPropagation()}
       />

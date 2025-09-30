@@ -1,4 +1,3 @@
-import { PaymentRes } from "@/types/payments";
 import { SetStateAction } from "jotai";
 import { createContext } from "react";
 

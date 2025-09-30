@@ -4,7 +4,6 @@ import PaymentProcessorContext, {
   PaymentProcessorContextType,
 } from "@/context/PaymentProcessorContext";
 import { PaymentsContext, PaymentsContextType } from "@/context/PaymentsContext";
-import { MemberDetailsContext, MemberDetailsContextType } from "@/context/MemberDetailsContext";
 import {
   ThirdPartyButtonContext,
   ThirdPartyButtonContextType,
@@ -118,16 +117,6 @@ const usePaymentsContext = (): PaymentsContextType => {
   return { ...context };
 };
 
-const useMemberDetailsContext = (): MemberDetailsContextType => {
-  const context = useContext(MemberDetailsContext);
-  if (!context) {
-    throw new Error(
-      "MemberDetailsContext must be used from within the MemberDetailsContext provider",
-    );
-  }
-  return { ...context };
-};
-
 const useThirdPartySignInContext = (): ThirdPartyButtonContextType => {
   const context = useContext(ThirdPartyButtonContext);
   if (!context) {
@@ -156,7 +145,6 @@ export {
   useAuthContext,
   usePaymentProcessorContext,
   usePaymentsContext,
-  useMemberDetailsContext,
   useThirdPartySignInContext,
   useSocialLinkContext,
 };

@@ -13,11 +13,9 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { ColumnDef } from "@tanstack/react-table";
 import { MoreHorizontal } from "lucide-react";
-import PayNow from "./pay-now";
 import Copy from "./copy";
-import { PaymentType } from "@/types/payments";
 
-export const columns: ColumnDef<PaymentType>[] = [
+export const columns: ColumnDef<{}>[] = [
   {
     accessorKey: "id",
     header: "ID",
@@ -127,12 +125,7 @@ export const columns: ColumnDef<PaymentType>[] = [
           <DropdownMenuContent className="min-w-56" align="end">
             <DropdownMenuLabel className="text-xs">Options</DropdownMenuLabel>
             <DropdownMenuSeparator />
-            <PayNow
-              amount={row.getValue("amount")}
-              accessCode={row.getValue("accessCode")}
-              pid={row.getValue("id")}
-              status={row.getValue("status")}
-            />
+
             <Copy value={row.getValue("trxref")}>Copy Transaction Ref</Copy>
           </DropdownMenuContent>
         </DropdownMenu>

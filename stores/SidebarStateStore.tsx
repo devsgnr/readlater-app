@@ -13,7 +13,7 @@ type SidebarStateStoreType = SidebarState & SidebarStateAction;
 const SidebarStateStore = createStore<SidebarStateStoreType>()(
   persist(
     (set) => ({
-      open: false,
+      open: true,
       actions: {
         setSidebarState: (open) => set({ open }),
       },

@@ -16,7 +16,7 @@ const ChangePasswordForm = () => {
   const handleSubmit = (v: ChangePasswordSchemaType, reset: () => void) => {
     mutate(v, {
       onSuccess: () => {
-        toast.success("Password Set Successfully");
+        toast.success("Password Updated Successfully");
         reset();
       },
       onError: (err) => {
@@ -89,9 +89,9 @@ const ChangePasswordForm = () => {
             </div>
 
             <div className="py-2 px-5 flex items-center justify-between">
-              <div className="flex items-center gap-1 dark:text-yellow-500 text-orange-500 text-xs">
-                <TriangleAlert size={14} />
-                <p className="">Upon update all other sessions will be revoked (logged out)</p>
+              <div className="flex items-center gap-1 text-destructive/70 text-xs">
+                <TriangleAlert size={16} />
+                <p className="h-4">Upon update all other sessions will be revoked (logged out)</p>
               </div>
 
               <Button size="sm" type="submit" className="w-fit gap-2" disabled={isPending}>

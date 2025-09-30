@@ -14,7 +14,6 @@ const Resolvers = {
       return ctx.session.user.id;
     },
   },
-  Mutation: {},
 };
 
 export { Resolvers };

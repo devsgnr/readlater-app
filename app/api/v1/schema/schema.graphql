@@ -3,6 +3,3 @@ scalar DateTime
 type Query {
   hello: String!
 }
-
-type Mutation {}
-

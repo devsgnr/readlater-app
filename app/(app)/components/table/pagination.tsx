@@ -8,17 +8,12 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { PageData } from "@/context/PaymentsContext";
 import { usePaymentsContext } from "@/lib/hooks";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import React from "react";
 
 const PaginateTable = () => {
-  const {
-    pageData,
-    setPageData,
-    payments: { totalCount, totalPages },
-  } = usePaymentsContext();
+  const { pageData, setPageData } = usePaymentsContext();
   const { page, pageSize } = pageData;
 
   return (
@@ -43,7 +38,7 @@ const PaginateTable = () => {
       </div>
 
       <p className="text-[13px] font-medium">
-        {(page - 1) * pageSize + 1}-{Math.min(page * pageSize, totalCount)} of {totalCount}
+        {(page - 1) * pageSize + 1}-{Math.min(page * pageSize, 0)} of {0}
       </p>
 
       <div className="grid grid-cols-2 gap-0 drop-shadow-sm">
@@ -58,7 +53,7 @@ const PaginateTable = () => {
         </Button>
         <Button
           className="bg-white h-7 w-7 rounded-tl-none rounded-bl-none"
-          disabled={page === totalPages}
+          disabled={page === 0}
           variant="outline"
           size="icon"
           onClick={() => setPageData((v) => ({ ...v, page: v.page + 1 }))}

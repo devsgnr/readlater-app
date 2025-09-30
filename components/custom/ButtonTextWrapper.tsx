@@ -21,7 +21,7 @@ const ButtonTextWrapper = ({ children, isLoading }: Props) => {
         {children}
 
         {!isLoading && (
-          <motion.div {...utils} initial={{ scale: 0 }} animate={{ scale: 1 }} exit={{ scale: 0 }}>
+          <motion.div {...utils} initial={{ scale: 1 }} animate={{ scale: 1 }} exit={{ scale: 0 }}>
             <ArrowRight size={16} />
           </motion.div>
         )}
