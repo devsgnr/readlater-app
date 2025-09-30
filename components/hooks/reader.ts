@@ -48,7 +48,7 @@ const useRenderMarkdown = ({
     editorProps: {
       attributes: {
         class:
-          "prose dark:prose-invert prose-sm max-w-full! prose-p:!mb-3 prose-ul:my-0.5 prose-ol:my-0.5 prose-a:text-slate-700 h-full! prose-h1:text-base prose-p:!break-words prose-a:!break-words prose-hr:m-1.5 p-0! reader-mode prose-p:!leading-1 prose-p:w-fit prose-a:w-fit prose-strong:pr-0.5",
+          "prose dark:prose-invert prose-sm max-w-full! prose-p:!my-1 prose-ul:my-0.5 prose-ol:my-0.5 prose-a:text-slate-700 h-full! prose-h1:text-base prose-p:!break-words prose-a:!break-words prose-hr:m-1.5 p-0! prose-p:w-fit prose-a:w-fit prose-strong:pr-0.5",
       },
     },
     immediatelyRender: immediatelyRender,

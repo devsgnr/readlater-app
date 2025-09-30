@@ -1,7 +1,5 @@
 "use client";
 
-import dynamic from "next/dynamic";
-
 // API Clients
 import AppTanstackQueryClient from "@/lib/query-client";
 import AppApolloClient from "@/lib/apollo-client";
@@ -12,11 +10,6 @@ import { QueryClientProvider } from "@tanstack/react-query";
 import { ApolloProvider } from "@apollo/client";
 import AuthProvider from "@/providers/AuthProvider";
 import PaymentsProvider from "@/providers/PaymentsProvider";
-
-// Providers -- Dynamic Import
-const PaymentProcessorProvider = dynamic(() => import("@/providers/PaymentProcessorProvider"), {
-  ssr: false,
-});
 
 // Components
 import AppNavbar from "./components/AppNavbar";
@@ -39,24 +32,22 @@ const AppLayout = ({ children }: { children: React.ReactNode }) => {
       <QueryClientProvider client={AppTanstackQueryClient}>
         <AuthProvider>
           <AccountsProvider>
-            <PaymentProcessorProvider>
-              <ApolloProvider client={AppApolloClient}>
-                <PaymentsProvider>
-                  {/** Sidebar Layout Level */}
-                  <SidebarProvider open={open} onOpenChange={(v) => actions.setSidebarState(v)}>
-                    <AppNavbar />
-                    <main className="w-full whitespace-nowrap box-border overflow-x-hidden">
-                      <TopBar />
-                      {/** Main Body */}
-                      <div className="w-full box-border">{children}</div>
-                    </main>
-                  </SidebarProvider>
-                </PaymentsProvider>
+            <ApolloProvider client={AppApolloClient}>
+              <PaymentsProvider>
+                {/** Sidebar Layout Level */}
+                <SidebarProvider open={open} onOpenChange={(v) => actions.setSidebarState(v)}>
+                  <AppNavbar />
+                  <main className="w-full whitespace-nowrap box-border">
+                    <TopBar />
+                    {/** Main Body */}
+                    <div className="w-full box-border">{children}</div>
+                  </main>
+                </SidebarProvider>
+              </PaymentsProvider>
 
-                {/** Notification Toast Provider - via Sonner & shadcn */}
-                <ReadlaterToaster />
-              </ApolloProvider>
-            </PaymentProcessorProvider>
+              {/** Notification Toast Provider - via Sonner & shadcn */}
+              <ReadlaterToaster />
+            </ApolloProvider>
           </AccountsProvider>
         </AuthProvider>
       </QueryClientProvider>

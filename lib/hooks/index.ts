@@ -1,8 +1,5 @@
 import { useContext, useEffect, useState } from "react";
 import AuthContext, { AuthContextType } from "@/context/AuthContext";
-import PaymentProcessorContext, {
-  PaymentProcessorContextType,
-} from "@/context/PaymentProcessorContext";
 import { PaymentsContext, PaymentsContextType } from "@/context/PaymentsContext";
 import {
   ThirdPartyButtonContext,
@@ -100,16 +97,6 @@ const useAuthContext = (): AuthContextType => {
   return { ...context };
 };
 
-const usePaymentProcessorContext = (): PaymentProcessorContextType => {
-  const context = useContext(PaymentProcessorContext);
-  if (!context) {
-    throw new Error(
-      "PaymentProcessorContext must be used from within the PaymentProcessorContext provider",
-    );
-  }
-  return { ...context };
-};
-
 const usePaymentsContext = (): PaymentsContextType => {
   const context = useContext(PaymentsContext);
   if (!context) {
@@ -153,7 +140,6 @@ export {
   /* Context Hook Exports */
   useAuthContext,
   useAccountsContext,
-  usePaymentProcessorContext,
   usePaymentsContext,
   useThirdPartySignInContext,
   useSocialLinkContext,

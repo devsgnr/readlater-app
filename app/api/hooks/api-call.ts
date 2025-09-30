@@ -1,4 +1,6 @@
 import { SetPasswordSchemaType } from "@/schema/input/authentication";
+import { Polar } from "@polar-sh/sdk";
+import { ProductsListResponse } from "@polar-sh/sdk/models/operations/productslist.js";
 
 const SetPassword = async (data: SetPasswordSchemaType) => {
   try {
@@ -18,4 +20,21 @@ const SetPassword = async (data: SetPasswordSchemaType) => {
   }
 };
 
-export { SetPassword };
+const GetProducts = async (): Promise<ProductsListResponse> => {
+  try {
+    const response = await fetch("/api/auth/get-products", {
+      method: "GET",
+    });
+
+    if (!response.ok) {
+      throw new Error(`Failed to get products: ${response.statusText}`);
+    }
+
+    const result = await response.json();
+    return result as ProductsListResponse;
+  } catch (error) {
+    throw new Error((error as Error).message, { cause: error });
+  }
+};
+
+export { SetPassword, GetProducts };

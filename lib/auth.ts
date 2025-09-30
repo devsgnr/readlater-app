@@ -1,14 +1,17 @@
 import { Polar } from "@polar-sh/sdk";
 import { betterAuth } from "better-auth";
 import { prismaAdapter } from "better-auth/adapters/prisma";
-import { polar, checkout } from "@polar-sh/better-auth";
+import { polar, checkout, portal } from "@polar-sh/better-auth";
 import { SendResetPasswordEmail, SendVerifyEmail } from "./email-client";
 import { nextCookies } from "better-auth/next-js";
 import { lastLoginMethod } from "better-auth/plugins";
 import { prisma } from "./prisma-client";
 
+type PolarEnv = "production" | "sandbox" | undefined;
+
 const polarClient = new Polar({
   accessToken: process.env.POLAR_ACCESS_TOKEN!,
+  server: process.env.POLAR_ENV! as PolarEnv,
 });
 
 export const auth = betterAuth({
@@ -53,14 +56,10 @@ export const auth = betterAuth({
       client: polarClient,
       createCustomerOnSignUp: true,
       use: [
+        portal(),
         checkout({
+          successUrl: "/",
           authenticatedUsersOnly: true,
-          products: [
-            {
-              productId: "c5f5a69e-2042-493b-9093-6fe0fdbe9ac8",
-              slug: "Readlater",
-            },
-          ],
         }),
       ],
     }),
@@ -73,3 +72,5 @@ export const auth = betterAuth({
     "https://app.readlater.fyi",
   ],
 });
+
+export { polarClient };

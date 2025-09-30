@@ -9,7 +9,7 @@ const NavItem = [
 
 const UserDropdownItem = [
   { id: nanoid(), title: "Profile", href: "/profile", icon: User },
-  { id: nanoid(), title: "Billings", href: "#", icon: CreditCard },
+  { id: nanoid(), title: "Billing", href: "/billing", icon: CreditCard },
   { id: nanoid(), title: "Account Settings", href: "/settings", icon: Settings },
 ];
 
